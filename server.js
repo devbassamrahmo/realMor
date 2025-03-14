@@ -9,6 +9,11 @@ app.use(express.json());
 const userRoute = require('./routes/userRouter')
 app.use('/user' , userRoute);
 
+const clientBankRoute = require('./routes/client.routes');
+app.use('/bankclient' , clientBankRoute);
+
+const propertyRoute = require('./routes/property.Routes');
+app.use('/property' , propertyRoute);
 
 //end of routes
 
