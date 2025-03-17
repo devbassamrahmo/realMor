@@ -4,6 +4,15 @@ const port = process.env.PORT || 8000;
 const app = express();
 const mongoose = require('mongoose');
 app.use(express.json());
+const cors = require('cors')
+
+//cors 
+app.use(
+    cors({
+      origin: ["http://localhost:5173", "https://ecommerce3-ahmd.netlify.app"], 
+      credentials: true, 
+    })
+  );
 //routes
 
 const userRoute = require('./routes/userRouter')

@@ -36,9 +36,10 @@ const registerUser = async (req, res) => {
   
 const loginUser = async (req, res) => {
   try {
+    console.log(req.body)
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-
+    console.log(user)
     if (!user) {
       return res.status(401).json({ message: "Invalid credentials" });
     }

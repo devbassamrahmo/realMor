@@ -5,8 +5,8 @@ const clientSchema = new mongoose.Schema({
   lastName: { type: String, required: true },
   contactNumber: { type: String, required: true },
   budget: { type: Number, required: true },
-  employee: { type: mongoose.Schema.Types.ObjectId, ref: '‘User', required: true },
-
+  employee: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  employeeId : {type: Number, required: true },
   mortgageBudget: { type: Number },
   approvedLoanAmount: { type: Number },
 
