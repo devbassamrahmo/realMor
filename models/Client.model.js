@@ -18,7 +18,8 @@ const clientSchema = new mongoose.Schema({
   propertyBedrooms: { type: Number },
   propertyBathrooms: { type: Number },
   minSpace: { type: Number },
-  maxSpace: { type: Number }
+  maxSpace: { type: Number },
+  status: {type: String , enum:['Waiting for Consultant' , 'Visited Developer']}  
 }, { timestamps: true });
 
 module.exports = mongoose.model('Client', clientSchema);

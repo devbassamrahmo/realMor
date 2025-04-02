@@ -24,6 +24,9 @@ app.use('/bankclient' , clientBankRoute);
 const propertyRoute = require('./routes/property.Routes');
 app.use('/property' , propertyRoute);
 
+const calendarRouter = require('./routes/calendar.routes');
+app.use('/calendar' , calendarRouter);
+
 //end of routes
 
 mongoose.connect(process.env.DB_URL).then(()=>{

@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const User = require("../models/User.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 require("dotenv").config();
@@ -15,7 +15,7 @@ const saltRounds = 10;
 
 const registerUser = async (req, res) => {
     try {
-      console.log(req.body)
+      
       const { firstname, lastname, institutionName , email, password, phoneNumber , role} = req.body;
   
       const existingUser = await User.findOne({ email });
