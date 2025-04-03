@@ -21,7 +21,7 @@ app.use('/user' , userRoute);
 const clientBankRoute = require('./routes/client.routes');
 app.use('/bankclient' , clientBankRoute);
 
-const propertyRoute = require('./routes/property.Routes');
+const propertyRoute = require('./routes/property.routes');
 app.use('/property' , propertyRoute);
 
 const calendarRouter = require('./routes/calendar.routes');
@@ -29,6 +29,7 @@ app.use('/calendar' , calendarRouter);
 
 //end of routes
 
+//new
 mongoose.connect(process.env.DB_URL).then(()=>{
    app.listen(port , ()=>{
         console.log(`http://localhost:${port}`);
