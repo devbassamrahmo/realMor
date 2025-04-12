@@ -1,5 +1,6 @@
 const Property = require('../models/Property.model');
 const Client = require("../models/Client.model");
+
 exports.createProperty = async (req, res) => {
   try {
     const developerId = req.user.id; 
@@ -59,41 +60,55 @@ exports.getMyProperties = async (req, res) => {
   }
 };
 
-
-// Function to find the best matching properties
+// Matching properties with updated enums
 exports.findBestProperties = async (req, res) => {
   try {
-      const { clientId } = req.params;
-      const client = await Client.findById(clientId);
-      if (!client) {
-          return res.status(404).json({ error: "Client not found" });
-      }
+    const { clientId } = req.params;
+    const client = await Client.findById(clientId);
+    if (!client) {
+      return res.status(404).json({ error: "Client not found" });
+    }
 
-      // Search for properties that exactly match the client's preferences
-      let bestMatches = await Property.find({
-          city: client.propertyCity,
-          district: client.propertyDistrict,
-          type: client.propertyType,
-          bedrooms: client.propertyBedrooms,
-          price: { $lte: client.budget },
-          area: { $gte: client.minSpace, $lte: client.maxSpace }
-      });
+    const exactMatch = {
+      city: client.propertyCity,
+      district: client.propertyDistrict,
+      type: client.propertyType, // should match one of ["residential", "commercial", ...]
+      bedrooms: client.propertyBedrooms,
+      price: { $lte: client.budget },
+      area: { $gte: client.minSpace, $lte: client.maxSpace },
+      status: "available"
+    };
 
-      if (bestMatches.length > 0) {
-          return res.status(200).json(bestMatches);
-      }
+    let bestMatches = await Property.find(exactMatch);
 
-      // If no exact match, find the closest 3 properties
-      let closestMatches = await Property.find({
-          city: client.propertyCity,
-          price: { $lte: client.budget * 1.2 }, // Allow some flexibility in budget
-          area: { $gte: client.minSpace * 0.8, $lte: client.maxSpace * 1.2 }
-      })
-      .sort({ price: 1 }) // Sort by price ascending
+    if (bestMatches.length > 0) {
+      return res.status(200).json(bestMatches);
+    }
+
+    const flexibleMatch = {
+      city: client.propertyCity,
+      price: { $lte: client.budget * 1.2 },
+      area: { $gte: client.minSpace * 0.8, $lte: client.maxSpace * 1.2 },
+      status: "available"
+    };
+
+    let closestMatches = await Property.find(flexibleMatch)
+      .sort({ price: 1 })
       .limit(3);
 
+    if (closestMatches.length > 0) {
       return res.status(200).json(closestMatches);
+    }
+
+    // fallback
+    let fallbackProperties = await Property.find({ status: "available" })
+      .sort({ createdAt: -1 })
+      .limit(3);
+
+    return res.status(200).json(fallbackProperties);
+
   } catch (error) {
-      res.status(500).json({ error: error.message });
+    console.error(error);
+    res.status(500).json({ error: error.message });
   }
 };
