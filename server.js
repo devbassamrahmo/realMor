@@ -21,7 +21,7 @@ app.use('/user' , userRoute);
 const clientBankRoute = require('./routes/client.routes');
 app.use('/bankclient' , clientBankRoute);
 
-const propertyRoutes = require('./routes/property.routes');
+const propertyRoutes = require('./routes/property')
 app.use('/property' , propertyRoutes);
 
 const calendarRouter = require('./routes/activity.routes');
