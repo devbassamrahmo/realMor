@@ -25,4 +25,12 @@ const isAdmin = (req, res, next) => {
   }
 };
 
-module.exports = { protect, isAdmin };
+const isDeveloper = (req, res, next) => {
+  if (req.user && req.user.role === "developer") {
+    next();
+  } else {
+    res.status(403).json({ message: "Access denied. Developer only." });
+  }
+};
+
+module.exports = { protect, isAdmin , isDeveloper };
