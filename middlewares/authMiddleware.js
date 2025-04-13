@@ -26,7 +26,7 @@ const isAdmin = (req, res, next) => {
 };
 
 const isDeveloper = (req, res, next) => {
-  if (req.user && req.user.role === "developer") {
+  if (req.user && req.user.role === "re") {
     next();
   } else {
     res.status(403).json({ message: "Access denied. Developer only." });

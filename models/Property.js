@@ -4,21 +4,20 @@ const propertySchema = new mongoose.Schema({
   developer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User", 
-    required: true,
   },
   images: {
     type: [String],
     default: [],
   },
-  price: { type: Number, required: true },
-  city: { type: String, required: true },
+  price: { type: Number},
+  city: { type: String },
   direction: {
     type: String,
     enum: ["north", "south", "east", "west", "unspecified"],
     default: "unspecified"
   },
   district: { type: String },
-  area: { type: Number, required: true },
+  area: { type: Number},
   buildType: {
     type: String,
     enum: ["apartment", "villa", "duplex", "building", "other"],

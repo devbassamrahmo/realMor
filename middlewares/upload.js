@@ -1,17 +1,15 @@
-const multer = require('multer');
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
-const cloudinary = require('../config/cloudinary');
+const multer = require("multer");
 
-// ✅ Configure Multer Storage with Cloudinary
-const storage = new CloudinaryStorage({
-    cloudinary: cloudinary,
-    params: {
-        folder: 'ads_images', // Cloudinary folder name
-        format: async (req, file) => 'png', // Convert to PNG
-        public_id: (req, file) => `${Date.now()}-${file.originalname}`,
-    },
-});
+const storage = multer.memoryStorage();
 
-const upload = multer({ storage });
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === "text/csv") {
+    cb(null, true);
+  } else {
+    cb(new Error("Only CSV files are allowed"), false);
+  }
+};
+
+const upload = multer({ storage, fileFilter });
 
 module.exports = upload;

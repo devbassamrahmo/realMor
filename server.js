@@ -5,7 +5,7 @@ const app = express();
 const mongoose = require('mongoose');
 app.use(express.json());
 const cors = require('cors')
-
+app.use(express.urlencoded({ extended: true }));
 //cors 
 app.use(
     cors({
@@ -23,6 +23,9 @@ app.use('/bankclient' , clientBankRoute);
 
 const propertyRoutes = require('./routes/propertyRoute')
 app.use('/property' , propertyRoutes);
+
+const activityRoutes = require('./routes/activityRoute')
+app.use('/activity' , activityRoutes);
 
 // const calendarRouter = require('./routes/activity.routes');
 // app.use('/calendar' , calendarRouter);
