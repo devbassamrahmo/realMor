@@ -18,10 +18,10 @@ app.use(
 const userRoute = require('./routes/userRouter')
 app.use('/user' , userRoute);
 
-const clientBankRoute = require('./routes/client.routes');
+const clientBankRoute = require('./routes/clientRoute');
 app.use('/bankclient' , clientBankRoute);
 
-const propertyRoutes = require('./routes/property')
+const propertyRoutes = require('./routes/propertyRoute')
 app.use('/property' , propertyRoutes);
 
 const calendarRouter = require('./routes/activity.routes');

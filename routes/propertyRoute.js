@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const propertyController = require("../controllers/property.controller");
+const propertyController = require("../controllers/propertyController");
 const { protect, isDeveloper } = require("../middlewares/authMiddleware");
 
 // Add new property

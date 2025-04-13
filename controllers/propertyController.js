@@ -1,5 +1,5 @@
-const Property = require('../models/Property.model');
-const Client = require("../models/Client.model");
+const Property = require('../models/Property');
+const Client = require("../models/Client");
 
 exports.createProperty = async (req, res) => {
   try {

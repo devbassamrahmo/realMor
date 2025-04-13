@@ -1,6 +1,6 @@
-const Task = require("../models/task.model");
-const Event = require("../models/event.model");
-const Call = require("../models/call.model");
+const Task = require("../models/Task");
+const Event = require("../models/Event");
+const Call = require("../models/Call");
 
 const modelsMap = {
   task: Task,
@@ -66,9 +66,9 @@ exports.getAllActivities = async (req, res) => {
     const userId = req.user.id;
 
     const [tasks, events, calls] = await Promise.all([
-      require("../models/task.model").find({ owner: userId }),
-      require("../models/event.model").find({ owner: userId }),
-      require("../models/call.model").find({ owner: userId }),
+      require("../models/Task").find({ owner: userId }),
+      require("../models/Event").find({ owner: userId }),
+      require("../models/Call").find({ owner: userId }),
     ]);
 
     // بنرتبهم مع بعض حسب التاريخ

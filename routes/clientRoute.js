@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const clientController = require('../controllers/client.controller');
+const clientController = require('../controllers/clientController');
 const { protect , isAdmin } = require("../middlewares/authMiddleware");
 // Add client
 router.post('/add-client', protect ,  clientController.createClient);

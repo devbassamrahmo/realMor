@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const activityController = require("../controllers/activity.controller");
+const activityController = require("../controllers/activityController");
 const { protect } = require("../middlewares/authMiddleware");
 
 // Unified routes
