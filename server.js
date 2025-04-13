@@ -24,8 +24,8 @@ app.use('/bankclient' , clientBankRoute);
 const propertyRoutes = require('./routes/propertyRoute')
 app.use('/property' , propertyRoutes);
 
-const calendarRouter = require('./routes/activity.routes');
-app.use('/calendar' , calendarRouter);
+// const calendarRouter = require('./routes/activity.routes');
+// app.use('/calendar' , calendarRouter);
 
 //end of routes
 
