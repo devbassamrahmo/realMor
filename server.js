@@ -27,6 +27,11 @@ app.use('/property' , propertyRoutes);
 const activityRoutes = require('./routes/activityRoute')
 app.use('/activity' , activityRoutes);
 
+const dealRoutes = require('./routes/dealRouter');
+app.use('/deal' , dealRoutes);
+
+const dashboardRoutes = require('./routes/dashboardRoute');
+app.use('/dashboard' , dashboardRoutes);
 // const calendarRouter = require('./routes/activity.routes');
 // app.use('/calendar' , calendarRouter);
 

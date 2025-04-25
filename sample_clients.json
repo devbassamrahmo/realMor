@@ -1,0 +1,96 @@
+[
+  {
+    "firstName": "Ahmad",
+    "lastName": "Saleh",
+    "contactNumber": "710000000",
+    "budget": 120000,
+    "mortgageBudget": 70000,
+    "approvedLoanAmount": 80000,
+    "propertyType": "residential",
+    "propertyLocation": "Mazzeh",
+    "propertyArea": "90",
+    "propertyCity": "Damascus",
+    "propertyDistrict": "Mazzeh",
+    "propertyBedrooms": 3,
+    "propertyBathrooms": 2,
+    "minSpace": 80,
+    "maxSpace": 120,
+    "status": "Waiting for Consultant"
+  },
+  {
+    "firstName": "Laila",
+    "lastName": "Karim",
+    "contactNumber": "710000001",
+    "budget": 95000,
+    "mortgageBudget": 50000,
+    "approvedLoanAmount": 60000,
+    "propertyType": "residential",
+    "propertyLocation": "Baramkeh",
+    "propertyArea": "75",
+    "propertyCity": "Damascus",
+    "propertyDistrict": "Baramkeh",
+    "propertyBedrooms": 2,
+    "propertyBathrooms": 1,
+    "minSpace": 70,
+    "maxSpace": 100,
+    "status": "Waiting for Consultant"
+  }
+
+,
+
+  {
+    "firstname": "Omar",
+    "lastname": "Banker",
+    "email": "omar.bank@example.com",
+    "institutionName": "Syrian Bank",
+    "password": "Bank123!",
+    "phoneNumber": "700000001",
+    "role": "bank"
+  },
+  {
+    "firstname": "Maya",
+    "lastname": "Banker",
+    "email": "maya.bank@example.com",
+    "institutionName": "Lebanon Bank",
+    "password": "Bank123!",
+    "phoneNumber": "700000002",
+    "role": "bank"
+  },
+  {
+    "firstname": "Ali",
+    "lastname": "Developer",
+    "email": "ali.dev@example.com",
+    "institutionName": "BuildCo",
+    "password": "Dev123!",
+    "phoneNumber": "700000003",
+    "role": "ic"
+  },
+  {
+    "firstname": "Lina",
+    "lastname": "Developer",
+    "email": "lina.dev@example.com",
+    "institutionName": "RealEstateInc",
+    "password": "Dev123!",
+    "phoneNumber": "700000004",
+    "role": "ic"
+  },
+  {
+    "firstname": "Khaled",
+    "lastname": "Broker",
+    "email": "khaled.broker@example.com",
+    "institutionName": "FastSales",
+    "password": "Broker123!",
+    "phoneNumber": "700000005",
+    "role": "re"
+  },
+  {
+    "firstname": "Sara",
+    "lastname": "Broker",
+    "email": "sara.broker@example.com",
+    "institutionName": "EliteAgency",
+    "password": "Broker123!",
+    "phoneNumber": "700000006",
+    "role": "re"
+  }
+
+]

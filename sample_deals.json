@@ -1,0 +1,20 @@
+[
+  {
+    "client": "CLIENT_ID_1",
+    "property": "PROPERTY_ID_1",
+    "broker": "BROKER_ID",
+    "bankEmployee": "BANK_ID",
+    "developer": "DEVELOPER_ID",
+    "loanAmount": 70000,
+    "dealPrice": 110000
+  },
+  {
+    "client": "CLIENT_ID_2",
+    "property": "PROPERTY_ID_2",
+    "broker": "BROKER_ID",
+    "bankEmployee": "BANK_ID",
+    "developer": "DEVELOPER_ID",
+    "loanAmount": 60000,
+    "dealPrice": 95000
+  }
+]

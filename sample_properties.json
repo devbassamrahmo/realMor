@@ -1,0 +1,30 @@
+[
+  {
+    "images": [
+      "https://picsum.photos/300/201"
+    ],
+    "price": 110000,
+    "city": "Damascus",
+    "direction": "north",
+    "district": "Mazzeh",
+    "area": 90,
+    "buildType": "apartment",
+    "bedrooms": 3,
+    "type": "residential",
+    "description": "Modern apartment with a great view"
+  },
+  {
+    "images": [
+      "https://picsum.photos/300/202"
+    ],
+    "price": 95000,
+    "city": "Damascus",
+    "direction": "east",
+    "district": "Baramkeh",
+    "area": 80,
+    "buildType": "apartment",
+    "bedrooms": 2,
+    "type": "residential",
+    "description": "Cozy apartment near downtown"
+  }
+]
