@@ -1,6 +1,7 @@
 const Property = require('../models/Property');
 const Client = require("../models/Client");
 const csv = require("csvtojson");
+const { logAction } = require("../utils/logAction");
 
 exports.createProperty = async (req, res) => {
   try {
@@ -30,6 +31,14 @@ exports.createProperty = async (req, res) => {
       bedrooms,
       type,
       description,
+    });
+
+    await logAction({
+      action: "create",
+      user: req.user,
+      targetType: "Property",
+      targetId: newProperty._id,
+      description: `${req.user.firstname} added a property in ${city}`
     });
 
     res.status(201).json({
@@ -118,13 +127,17 @@ exports.findBestProperties = async (req, res) => {
 exports.importPropertiesFromCSV = async (req, res) => {
   try {
     const developerId = req.user.id;
-    const csvBuffer = req.file.buffer;
 
+    if (!req.file || !req.file.buffer) {
+      return res.status(400).json({ error: "No CSV file provided" });
+    }
+
+    const csvBuffer = req.file.buffer;
     const jsonArray = await csv().fromString(csvBuffer.toString());
 
-    const formattedProperties = jsonArray.map(row => ({
+    const formattedProperties = jsonArray.map((row) => ({
       developer: developerId,
-      images: row.images ? row.images.split(';') : [],
+      images: row.images ? row.images.split(";") : [],
       price: Number(row.price),
       city: row.city,
       direction: row.direction,
@@ -134,14 +147,22 @@ exports.importPropertiesFromCSV = async (req, res) => {
       bedrooms: Number(row.bedrooms),
       type: row.type,
       description: row.description,
-      status: "available"
+      status: "available",
     }));
 
     const created = await Property.insertMany(formattedProperties);
 
+    await logAction({
+      action: "create",
+      user: req.user,
+      targetType: "Property",
+      targetId: "bulk-import",
+      description: `${req.user.firstname} imported ${created.length} properties via CSV`
+    });
+
     res.status(201).json({
       message: `${created.length} properties imported successfully`,
-      data: created
+      data: created,
     });
   } catch (error) {
     console.error("CSV import error:", error);

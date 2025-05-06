@@ -1,4 +1,5 @@
 const Deal = require("../models/Deal");
+const { logAction } = require("../utils/logAction");
 
 // 1. Create a new deal
 exports.createDeal = async (req, res) => {
@@ -21,6 +22,14 @@ exports.createDeal = async (req, res) => {
       developer,
       loanAmount,
       dealPrice
+    });
+
+    await logAction({
+      action: "create",
+      user: req.user,
+      targetType: "Deal",
+      targetId: deal._id,
+      description: `${req.user.firstname} created a deal for client ${client}`
     });
 
     res.status(201).json({ message: "Deal created successfully", deal });

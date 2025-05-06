@@ -1,4 +1,5 @@
 const Client = require('../models/Client');
+const { logAction } = require("../utils/logAction");
 
 // Create new client
 exports.createClient = async (req, res) => {
@@ -9,6 +10,14 @@ exports.createClient = async (req, res) => {
     const newClient = await Client.create({
       ...clientData,
       employee: employeeId 
+    });
+
+    await logAction({
+      action: "create",
+      user: req.user,
+      targetType: "Client",
+      targetId: newClient._id,
+      description: `${req.user.firstname} added client ${newClient.firstName} ${newClient.lastName}`
     });
 
     res.status(201).json({ message: 'Client created successfully', client: newClient });

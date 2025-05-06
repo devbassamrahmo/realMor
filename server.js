@@ -32,6 +32,9 @@ app.use('/deal' , dealRoutes);
 
 const dashboardRoutes = require('./routes/dashboardRoute');
 app.use('/dashboard' , dashboardRoutes);
+
+const auditRoutes = require('./routes/auditRoute');
+app.use('/audit' , auditRoutes);
 // const calendarRouter = require('./routes/activity.routes');
 // app.use('/calendar' , calendarRouter);
 

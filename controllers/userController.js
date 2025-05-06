@@ -1,7 +1,9 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const { logAction } = require("../utils/logAction");
 require("dotenv").config();
+
 // const nodemailer = require("nodemailer");
 const saltRounds = 10;
 
@@ -55,7 +57,13 @@ const loginUser = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "24h" }
     );
-
+    await logAction({
+      action: "login",
+      user,
+      targetType: "User",
+      targetId: user._id,
+      description: `${user.firstname} logged in`
+    });
     const { password: _, ...userWithoutPassword } = user.toObject();
     res.status(200).json({ message: "Login successful", user: userWithoutPassword, token });
   } catch (error) {

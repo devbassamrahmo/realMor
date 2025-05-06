@@ -1,6 +1,7 @@
 const Task = require("../models/Task");
 const Event = require("../models/Event");
 const Call = require("../models/Call");
+const { logAction } = require("../utils/logAction");
 
 const modelsMap = {
   task: Task,
@@ -15,6 +16,15 @@ exports.createActivity = async (req, res) => {
     if (!Model) return res.status(400).json({ error: "Invalid activity type" });
 
     const activity = await Model.create({ ...req.body, owner: req.user.id });
+
+    await logAction({
+      action: "create",
+      user: req.user,
+      targetType: "Activity",
+      targetId: activity._id,
+      description: `${req.user.firstname} created a ${activityType}`
+    });
+    
     res.status(201).json(activity);
   } catch (error) {
     res.status(500).json({ error: error.message });
